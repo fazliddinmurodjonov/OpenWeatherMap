@@ -10,6 +10,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.programmsoft.openweathermap.databinding.ActivityMapsBinding
 import java.io.IOException
@@ -44,10 +45,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        var marker: Marker? = null
+
+
         mMap.setOnMapClickListener { latLng ->
             Toast.makeText(this, latLng.latitude.toString(), Toast.LENGTH_SHORT).show()
+
 
 //            try {
 //                val addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
@@ -60,6 +66,28 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 //            } catch (e: IOException) {
 //                e.printStackTrace()
 //            }
+
+          //  val sydney = LatLng(latLng.latitude, latLng.longitude)
+          //  mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+            if (marker != null) {
+                marker?.remove()
+            }
+            val geocoder = Geocoder(applicationContext, Locale.getDefault())
+            try {
+                val addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
+                if (addresses != null && addresses.size > 0) {
+                    val address = addresses[0].getAddressLine(0)
+                //    Log.d("Map", "Address: $address")
+                    Toast.makeText(this, "$address", Toast.LENGTH_SHORT).show()
+                    }
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            marker = googleMap.addMarker(MarkerOptions().position(latLng).title(""))
+
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+
+
         }
         // Add a marker in Sydney and move the camera
 //        val sydney = LatLng(-34.0, 151.0)
