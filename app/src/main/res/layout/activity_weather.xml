@@ -3,8 +3,166 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/background"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".WeatherActivity">
+
+
+    <TextView
+        android:id="@+id/temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="18"
+        android:textColor="@color/white"
+        android:textSize="90sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/celsius"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="°C"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@id/temperature"
+        app:layout_constraintTop_toTopOf="@id/temperature"
+        tools:ignore="MissingConstraints" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:id="@+id/informationLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/temperature"
+        app:layout_constraintVertical_bias="0.8"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/city"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="City        : Toshkent Shahri" />
+
+        <TextView
+            android:id="@+id/latitude"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Latitude    : 69.2401° " />
+
+        <TextView
+            android:id="@+id/longitude"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Longitude   : 41.2995°" />
+
+
+        <TextView
+            android:id="@+id/description"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Description : Mist" />
+
+        <TextView
+            android:id="@+id/pressure"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Pressure    : 1024" />
+
+        <TextView
+            android:id="@+id/humidity"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Humidity    : 93" />
+
+        <TextView
+            android:id="@+id/windSpeed"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Wind Speed  : 5.14" />
+
+        <TextView
+            android:id="@+id/windDegree"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Wind degree : 290" />
+
+        <TextView
+            android:id="@+id/cloud"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Cloud       : 290" />
+
+        <TextView
+            android:id="@+id/sunrise"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Sunrise     : 08/02/2023 07:27:26" />
+
+        <TextView
+            android:id="@+id/sunset"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Sunset      : 09/02/2023 17:47:59" />
+
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

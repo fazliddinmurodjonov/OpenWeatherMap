@@ -20,24 +20,32 @@ class MapsActivity : AppCompatActivity(R.layout.activity_maps), OnMapReadyCallba
     private val binding: ActivityMapsBinding by viewBinding()
     private lateinit var mMap: GoogleMap
     val geocoder = Geocoder(this, Locale.getDefault())
-
+    var appId = "8cbe9357bad1298df6b6debaa8d214e1"
+    var lat: Double = 0.0
+    var lon: Double = 0.0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
         binding.nextBtn.setOnClickListener {
-            val intent = Intent(this, WeatherActivity::class.java)
-            startActivity(intent)
-        }
-    }
+            if (lat != 0.0 && lon != 0.0) {
+                val intent = Intent(this, WeatherActivity::class.java)
+                intent.putExtra("appId", appId)
+                intent.putExtra("lat", lat)
+                intent.putExtra("lon", lon)
+                startActivity(intent)
+            }
 
+        }
+
+    }
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         var marker: Marker? = null
         mMap.setOnMapClickListener { latLng ->
-            Toast.makeText(this, latLng.latitude.toString(), Toast.LENGTH_SHORT).show()
-
+            lat = latLng.latitude
+            lon = latLng.longitude
             if (marker != null) {
                 marker?.remove()
             }
@@ -49,7 +57,6 @@ class MapsActivity : AppCompatActivity(R.layout.activity_maps), OnMapReadyCallba
                     val address = addresses[0].getAddressLine(0)
                     //    Log.d("Map", "Address: $address")
                     locationAddress = address
-                    Toast.makeText(this, "$address", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: IOException) {
                 e.printStackTrace()
